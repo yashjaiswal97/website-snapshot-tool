@@ -27,8 +27,6 @@ A simple and interactive React.js application that allows users to capture scree
   ├── favicon.ico
   ├── index.html
 /src
-  ├── components/
-  │   ├── ScreenshotTool.js
   ├── App.js
   ├── index.js
   ├── App.css
@@ -39,8 +37,8 @@ A simple and interactive React.js application that allows users to capture scree
 ## 📦 Installation & Setup
 1. Clone the repository:
    ```bash
-   git clone https://github.com/your-username/website-screenshot-tool.git
-   cd website-screenshot-tool
+   git clone https://github.com/your-username/website-snapshot-tool.git
+   cd website-snapshot-tool
    ```
 
 2. Install dependencies:
@@ -60,15 +58,10 @@ A simple and interactive React.js application that allows users to capture scree
 
 ---
 
-## 🌐 Live Demo
-👉 [Click Here to Try the Tool](https://your-demo-link.netlify.app)  
+
 
 ---
 
-## 📸 Preview
-![App Screenshot](demo-screenshot.png)
-
----
 
 ## 📝 How It Works
 1. Enter the URL of the website you want to capture.  
@@ -77,16 +70,9 @@ A simple and interactive React.js application that allows users to capture scree
 
 ---
 
-## 🔮 Future Improvements
-- Support full-page scrolling screenshots  
-- Option to select resolution and quality  
-- Save screenshot history with localStorage  
-
----
-
 ## 👨‍💻 Author
 **Yash Jaiswal**  
-Frontend Developer | UI/UX Enthusiast  
+
 
 ---
 
