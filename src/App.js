@@ -33,6 +33,26 @@ function App() {
     }
   };
 
+  const downloadScreenshot = async () => {
+    if (!screenshot) return;
+
+    try {
+      const response = await fetch(screenshot);
+      const blob = await response.blob();
+      const urlBlob = window.URL.createObjectURL(blob);
+
+      const link = document.createElement("a");
+      link.href = urlBlob;
+      link.download = "screenshot.png";
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+      window.URL.revokeObjectURL(urlBlob);
+    } catch (err) {
+      setError("Failed to download screenshot");
+    }
+  };
+
   return (
     <div className="app">
       <h1 className="title">Snapshot Tool</h1>
@@ -61,9 +81,7 @@ function App() {
         {preview && screenshot && !loading && (
           <div className="screenshot">
             <img src={screenshot} alt="Website Preview" />
-            <a href={screenshot} download="screenshot.png">
-              ⬇️ Download Snapshot
-            </a>
+            <button onClick={downloadScreenshot}>Download Snapshot</button>
           </div>
         )}
       </div>
