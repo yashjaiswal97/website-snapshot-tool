@@ -6,9 +6,8 @@ function App() {
   const [screenshot, setScreenshot] = useState("");
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
-  const [preview, setPreview] = useState(false);
 
-  const previewScreenshot = async () => {
+  const captureScreenshot = async () => {
     if (!url) {
       setError("Please enter a valid URL");
       return;
@@ -16,18 +15,17 @@ function App() {
     setError("");
     setLoading(true);
     setScreenshot("");
-    setPreview(false);
 
     try {
-      const apiKey = "cb1d26e2e9df4f16bc77e733208999c2"; // API key
+      // Replace DEMO_KEY with your Apiflash API key
+      const apiKey = "cb1d26e2e9df4f16bc77e733208999c2"; 
       const apiUrl = `https://api.apiflash.com/v1/urltoimage?access_key=${apiKey}&url=${encodeURIComponent(
         url
       )}&full_page=true&fresh=true`;
 
-      setScreenshot(apiUrl);
-      setPreview(true);
+      setScreenshot(apiUrl); // Direct image link
     } catch (err) {
-      setError("Failed to fetch preview");
+      setError("Failed to capture screenshot");
     } finally {
       setLoading(false);
     }
@@ -35,38 +33,29 @@ function App() {
 
   return (
     <div className="app">
-      <h1 className="title">Snapshot Tool</h1>
+      <h1>Website Screenshot Tool</h1>
 
-      <div className="card">
-        <div className="input-section">
-          <input
-            type="text"
-            placeholder="Enter website URL (https://example.com)"
-            value={url}
-            onChange={(e) => setUrl(e.target.value)}
-          />
-          <button onClick={previewScreenshot}>Preview Snapshot</button>
-        </div>
-
-        {/* Show spinner when loading */}
-        {loading && (
-          <div className="loading-container">
-            <div className="spinner"></div>
-            <p>Generating preview...</p>
-          </div>
-        )}
-
-        {error && <p className="error">{error}</p>}
-
-        {preview && screenshot && !loading && (
-          <div className="screenshot">
-            <img src={screenshot} alt="Website Preview" />
-            <a href={screenshot} download="screenshot.png">
-              ⬇️ Download Snapshot
-            </a>
-          </div>
-        )}
+      <div className="input-section">
+        <input
+          type="text"
+          placeholder="Enter website URL (https://example.com)"
+          value={url}
+          onChange={(e) => setUrl(e.target.value)}
+        />
+        <button onClick={captureScreenshot}>Capture Screenshot</button>
       </div>
+
+      {loading && <p className="loading">Capturing screenshot...</p>}
+      {error && <p className="error">{error}</p>}
+
+      {screenshot && (
+        <div className="screenshot">
+          <img src={screenshot} alt="Website Screenshot" />
+          <a href={screenshot} download="screenshot.png">
+            Download Screenshot
+          </a>
+        </div>
+      )}
     </div>
   );
 }
